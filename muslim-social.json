@@ -19,7 +19,12 @@
             "title": "رسايل",
             "image": "images/3.jpg",
             "description": "\"رسايل\" قصيرة .. لتغيير كبير هانبعتها لبريد قلبك !"
-        }
+        },
+        "underGlasses": {
+            "title": "تحت النضارة",
+            "image": "images/4.jpg",
+            "description": "في (تحت النضارة حنشوف مع بعض ميديا جديدة بتناقش كل حاجة" 
+        },
     },
     "sections": [
         {
