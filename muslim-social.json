@@ -24,6 +24,11 @@
             "title": "تحت النضارة",
             "image": "images/4.jpg",
             "description": "في (تحت النضارة) حنشوف مع بعض ميديا جديدة بتناقش كل حاجة"
+        },
+        "@3laaHamed": {
+            "title": "Alaa Hamed - علاء حامد",
+            "image": "images/5.jpg",
+            "description": "إذا استطعت أن لا يسبقك إلى الله أحدٌ فافعل ."
         }
     },
     "sections": [
@@ -49,6 +54,10 @@
                 {
                     "profileId": "t7tnddarh",
                     "url": "https://www.facebook.com/t7tnddarh/"
+                },
+                {
+                    "profileId": "@3laaHamed",
+                    "url": "https://www.facebook.com/3laaHamed"
                 }
             ]
         },
@@ -62,6 +71,10 @@
                 {
                     "profileId": "fitrah",
                     "url": "https://www.tiktok.com/@fetrateam"
+                },
+                {
+                    "profileId": "@3laaHamed",
+                    "url": "https://www.tiktok.com/@alaa.hamed034"
                 }
             ]
         },
@@ -79,6 +92,10 @@
                 {
                     "profileId": "hamzatWasl",
                     "url": "https://www.youtube.com/@hmmztwsl"
+                },
+                {
+                    "profileId": "@3laaHamed",
+                    "url": "https://www.youtube.com/@3laaHamed"
                 }
             ]
         },
