@@ -7,7 +7,7 @@
     <meta
       name="description"
       content="صفحات وقنوات ومجتمعات مفيدة في مكان واحد." />
-    <title>Muslim Social</title>
+    <title>جود سوشيال</title>
 
     <link
       rel="stylesheet"
@@ -169,7 +169,7 @@
         </p>
 
         <p class="mt-2 text-xs text-slate-400 dark:text-slate-600">
-          © 2026 Muslim Social
+          © 2026 Good Social
         </p>
       </div>
     </footer>
@@ -225,7 +225,7 @@
 
       async function loadSocialData() {
         try {
-          const response = await fetch("./muslim-social.json", {
+          const response = await fetch("./good-social.json", {
             cache: "no-store",
           });
 
@@ -237,7 +237,7 @@
 
           state.data = data;
 
-          document.title = data.site?.name || "Muslim Social";
+          document.title = data.site?.name || "Good Social";
 
           if (elements.title) {
             elements.title.textContent = data.site?.title || "جود سوشيال";
@@ -625,7 +625,7 @@
             <p class="mx-auto mt-2 max-w-lg text-sm leading-7 text-slate-500 dark:text-slate-400">
               تأكد من وجود ملف
               <strong class="text-slate-700 dark:text-slate-300">
-                muslim-social.json
+                good-social.json
               </strong>
               بجانب ملف
               <strong class="text-slate-700 dark:text-slate-300">
