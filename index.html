@@ -1,18 +1,25 @@
 <!doctype html>
-<html lang="ar" dir="rtl" class="dark">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#020617" />
+
+    <title>جود سوشيال | جميع منصاتنا</title>
     <meta
       name="description"
-      content="صفحات وقنوات ومجتمعات مفيدة في مكان واحد." />
-    <title>جود سوشيال</title>
+      content="تابع جود سوشيال على جميع منصات التواصل الاجتماعي." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
       tailwind.config = {
@@ -20,7 +27,7 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Tahoma", "Arial", "sans-serif"],
+              cairo: ["Cairo", "sans-serif"],
             },
           },
         },
@@ -31,814 +38,291 @@
       (() => {
         const savedTheme = localStorage.getItem("theme");
 
-        const theme =
-          savedTheme === "dark" || savedTheme === "light"
-            ? savedTheme
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-
-        document.documentElement.classList.toggle("dark", theme === "dark");
+        if (
+          savedTheme === "dark" ||
+          (!savedTheme &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        }
       })();
     </script>
   </head>
 
   <body
-    class="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased transition-colors dark:bg-slate-950 dark:text-slate-100">
-    <header
-      class="relative overflow-hidden border-b border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
+    class="min-h-screen bg-white font-cairo text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-white">
+    <!-- Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_48%)]"
-        aria-hidden="true">
-      </div>
-
+        class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-600/10"></div>
       <div
-        class="relative mx-auto max-w-5xl px-6 pb-10 pt-12 text-center sm:pb-14 sm:pt-16">
-        <button
-          id="theme-toggle"
-          type="button"
-          aria-label="تفعيل الوضع الداكن"
-          title="الوضع الداكن"
-          class="absolute left-6 top-6 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-slate-600 transition hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white">
-          <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
-        </button>
-
-        <div class="mx-auto max-w-2xl">
-          <div
-            class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-2xl text-white shadow-xl shadow-blue-600/20">
-            <i class="fa-solid fa-mosque" aria-hidden="true"></i>
-          </div>
-
-          <h1
-            id="site-title"
-            class="mt-6 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-            جود سوشيال
-          </h1>
-
-          <p
-            id="site-description"
-            class="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-            صفحات وقنوات ومجتمعات مفيدة في مكان واحد.
-          </p>
-
-          <div class="relative mx-auto mt-7 max-w-xl">
-            <label for="search-input" class="sr-only"> البحث </label>
-
-            <div
-              class="flex h-14 items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 shadow-sm transition focus-within:border-blue-500/40 focus-within:ring-4 focus-within:ring-blue-500/10 dark:border-white/10 dark:bg-white/[0.04]">
-              <i
-                class="fa-solid fa-magnifying-glass shrink-0 text-slate-400"
-                aria-hidden="true">
-              </i>
-
-              <input
-                id="search-input"
-                placeholder="ابحث عن حساب أو منصة..."
-                class="min-w-0 flex-1 bg-transparent px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
-                aria-describedby="search-status" />
-
-              <button
-                id="clear-search"
-                type="button"
-                aria-label="مسح البحث"
-                title="مسح البحث"
-                class="hidden h-9 w-9 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-              </button>
-            </div>
-
-            <div
-              id="search-status"
-              class="mt-2 min-h-5 text-xs text-slate-400"
-              aria-live="polite">
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <nav
-      id="platform-nav"
-      class="sticky top-0 z-40 hidden border-b border-slate-200 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/80"
-      aria-label="المنصات">
-      <div class="scrollbar-hide mx-auto max-w-6xl overflow-x-auto px-6">
-        <div id="platform-links" class="flex min-w-max gap-2 py-3"></div>
-      </div>
-    </nav>
-
-    <main id="social-sections" class="mx-auto max-w-6xl px-6 pb-20">
-      <div id="loading" class="grid gap-4 py-12 md:grid-cols-2 lg:grid-cols-3">
-        <div
-          class="h-60 animate-pulse rounded-3xl bg-slate-200 dark:bg-white/[0.04]"></div>
-        <div
-          class="h-60 animate-pulse rounded-3xl bg-slate-200 dark:bg-white/[0.04]"></div>
-        <div
-          class="h-60 animate-pulse rounded-3xl bg-slate-200 dark:bg-white/[0.04]"></div>
-      </div>
-    </main>
-
-    <div id="no-results" class="mx-auto hidden max-w-6xl px-6 pb-20">
-      <div
-        class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-        <div
-          class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-xl text-slate-400 dark:bg-white/[0.05] dark:text-slate-500">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-        </div>
-
-        <h2 class="mt-5 font-black text-slate-900 dark:text-white">
-          لم يتم العثور على نتائج
-        </h2>
-
-        <p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400">
-          جرّب البحث باسم الحساب أو المنصة.
-        </p>
-
-        <button
-          id="reset-search"
-          type="button"
-          class="mt-5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-500/20 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
-          مسح البحث
-        </button>
-      </div>
+        class="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-purple-400/20 blur-3xl dark:bg-purple-600/10"></div>
     </div>
 
-    <footer class="border-t border-slate-200 dark:border-white/[0.07]">
-      <div class="mx-auto max-w-6xl px-6 py-8 text-center">
-        <p class="text-sm font-bold text-slate-600 dark:text-slate-400">
-          جود سوشيال
-        </p>
+    <!-- Header -->
+    <header
+      class="mx-auto flex max-w-5xl items-center justify-between px-5 py-6">
+      <div
+        class="flex aspect-square size-64 flex-col items-center justify-center overflow-hidden rounded-3xl bg-slate-950 p-6 text-white">
+        <!-- Icon -->
+        <div class="relative flex size-28 items-center justify-center">
+          <!-- Phone -->
+          <div
+            class="relative flex h-24 w-16 items-center justify-center rounded-[14px] border-4 border-white bg-indigo-600 shadow-xl">
+            <!-- Screen -->
+            <div
+              class="flex h-16 w-12 items-center justify-center rounded-[8px] bg-white">
+              <i class="fa-solid fa-share-nodes text-2xl text-indigo-600"></i>
+            </div>
 
-        <p class="mt-2 text-xs text-slate-400 dark:text-slate-600">
-          © 2026 Good Social
-        </p>
+            <!-- Speaker -->
+            <span
+              class="absolute left-1/2 top-1.5 h-1 w-3 -translate-x-1/2 rounded-full bg-white/50"></span>
+
+            <!-- Home -->
+            <span
+              class="absolute bottom-1 size-1.5 rounded-full bg-white/70"></span>
+          </div>
+
+          <!-- Facebook -->
+          <span
+            class="absolute right-0 top-0 flex size-8 items-center justify-center rounded-full bg-blue-600 text-xs shadow-lg ring-4 ring-slate-950">
+            <i class="fa-brands fa-facebook-f"></i>
+          </span>
+
+          <!-- Instagram -->
+          <span
+            class="absolute bottom-0 left-0 flex size-8 items-center justify-center rounded-full bg-pink-500 text-xs shadow-lg ring-4 ring-slate-950">
+            <i class="fa-brands fa-instagram"></i>
+          </span>
+        </div>
+
+        <!-- Arabic Name -->
+        <div class="mt-2 text-center text-2xl font-black tracking-tight">
+          جود <span class="text-indigo-400">سوشيال</span>
+        </div>
+
+        <!-- English Name -->
+        <div
+          class="mt-1 text-[9px] font-bold uppercase tracking-[0.35em] text-slate-400">
+          GOOD SOCIAL
+        </div>
       </div>
-    </footer>
 
-    <button
-      id="back-to-top"
-      type="button"
-      aria-label="العودة إلى الأعلى"
-      title="العودة إلى الأعلى"
-      class="fixed bottom-5 left-5 z-50 hidden h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/90 text-slate-500 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-slate-900/90 dark:text-slate-400 dark:hover:text-white">
-      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-    </button>
+      <button
+        id="themeToggle"
+        type="button"
+        aria-label="تغيير المظهر"
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:scale-105 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
+        <i id="themeIcon" class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-5 pb-16">
+      <!-- Brand -->
+      <section class="flex flex-col items-center pt-8 text-center sm:pt-14">
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          جود سوشيال
+        </h1>
+
+        <p
+          class="mt-4 max-w-xl text-base leading-8 text-slate-600 dark:text-slate-400 sm:text-lg">
+          صفحات وقنوات ومجتمعات مفيدة في مكان واحد.
+          <br class="hidden sm:block" />
+          تابعنا على منصات التواصل الاجتماعي.
+        </p>
+      </section>
+
+      <!-- Featured -->
+      <section class="mt-14">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <!-- Facebook -->
+          <a
+            href="https://www.facebook.com/share/195ZRbtpka/"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-700">
+            <div
+              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-2xl text-[#1877F2] dark:bg-blue-950/50">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <h3 class="font-bold">فيسبوك</h3>
+              <p
+                class="mt-1 truncate text-sm text-slate-500 dark:text-slate-400">
+                تابع آخر المنشورات والمحتوى
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1 group-hover:text-blue-500"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="#"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900 dark:hover:border-pink-700">
+            <div
+              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-pink-50 text-2xl text-pink-600 dark:bg-pink-950/40">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <h3 class="font-bold">إنستغرام</h3>
+              <p
+                class="mt-1 truncate text-sm text-slate-500 dark:text-slate-400">
+                صور ومقاطع ومحتوى يومي
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1 group-hover:text-pink-500"></i>
+          </a>
+
+          <!-- YouTube -->
+          <a
+            href="https://www.youtube.com/@good-social"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-red-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900 dark:hover:border-red-700">
+            <div
+              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-2xl text-red-600 dark:bg-red-950/40">
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <h3 class="font-bold">يوتيوب</h3>
+              <p
+                class="mt-1 truncate text-sm text-slate-500 dark:text-slate-400">
+                شاهد الفيديوهات والمحتوى المرئي
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1 group-hover:text-red-500"></i>
+          </a>
+
+          <!-- X -->
+          <a
+            href="#"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-400 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div
+              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-2xl text-black dark:bg-slate-800 dark:text-white">
+              <i class="fa-brands fa-x-twitter"></i>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <h3 class="font-bold">X</h3>
+              <p
+                class="mt-1 truncate text-sm text-slate-500 dark:text-slate-400">
+                آخر الأخبار والتحديثات
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Communities -->
+      <section class="mt-12">
+        <div class="mb-5">
+          <h2 class="text-xl font-bold">مجتمعات وقنوات</h2>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            أماكن أخرى يمكنك متابعتنا فيها
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <a
+            href="https://t.me/Good_Social_Media"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-xl text-sky-500 dark:bg-sky-950/40">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+
+            <div class="flex-1">
+              <h3 class="font-bold">قناة تيليجرام</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                انضم إلى قناتنا على تيليجرام
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1"></i>
+          </a>
+
+          <a
+            href="https://whatsapp.com/channel/0029Vb8mUIy65yD2o3X3rZ3N"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-xl text-green-600 dark:bg-green-950/40">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="flex-1">
+              <h3 class="font-bold">واتساب</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                تواصل معنا وانضم إلى مجتمعنا
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1"></i>
+          </a>
+
+          <a
+            href="#"
+            class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-xl text-purple-600 dark:bg-purple-950/40">
+              <i class="fa-brands fa-discord"></i>
+            </div>
+
+            <div class="flex-1">
+              <h3 class="font-bold">Discord</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                شاركنا النقاش داخل مجتمعنا
+              </p>
+            </div>
+
+            <i
+              class="fa-solid fa-arrow-left text-slate-300 transition group-hover:-translate-x-1"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="mt-16 border-t border-slate-200 pt-8 text-center dark:border-slate-800">
+        <p class="mt-5 text-sm text-slate-500 dark:text-slate-400">
+          © 2026 جود سوشيال — جميع الحقوق محفوظة
+        </p>
+      </footer>
+    </main>
 
     <script>
-      "use strict";
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const root = document.documentElement;
 
-      const state = {
-        data: null,
-        query: "",
-      };
+      function updateThemeIcon() {
+        const isDark = root.classList.contains("dark");
 
-      const elements = {
-        title: document.getElementById("site-title"),
-        description: document.getElementById("site-description"),
-        sections: document.getElementById("social-sections"),
-        loading: document.getElementById("loading"),
-        noResults: document.getElementById("no-results"),
-        search: document.getElementById("search-input"),
-        clearSearch: document.getElementById("clear-search"),
-        resetSearch: document.getElementById("reset-search"),
-        searchStatus: document.getElementById("search-status"),
-        platformNav: document.getElementById("platform-nav"),
-        platformLinks: document.getElementById("platform-links"),
-        backToTop: document.getElementById("back-to-top"),
-        themeToggle: document.getElementById("theme-toggle"),
-        themeIcon: document.getElementById("theme-icon"),
-      };
-
-      const platformNames = {
-        facebook: "فيسبوك",
-        tiktok: "تيك توك",
-        youtube: "يوتيوب",
-        telegram: "تيليجرام",
-        instagram: "إنستجرام",
-        twitter: "إكس",
-        whatsapp: "واتساب",
-        linkedin: "لينكدإن",
-      };
-
-      function getPlatformName(platform) {
-        return platformNames[platform] || platform || "منصة";
+        themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
       }
 
-      async function loadSocialData() {
-        try {
-          const response = await fetch("./data.json", {
-            cache: "no-store",
-          });
-
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-          }
-
-          const data = await response.json();
-
-          state.data = data;
-
-          document.title = data.site?.name || "Good Social";
-
-          if (elements.title) {
-            elements.title.textContent = data.site?.title || "جود سوشيال";
-          }
-
-          if (elements.description) {
-            elements.description.textContent = data.site?.description || "";
-          }
-
-          elements.loading?.remove();
-
-          if (!Array.isArray(data.sections) || data.sections.length === 0) {
-            showEmptyState();
-            return;
-          }
-
-          buildPlatformNavigation();
-          renderSections();
-        } catch (error) {
-          console.error("Failed to load social data:", error);
-
-          elements.loading?.remove();
-          showErrorState();
-        }
-      }
-
-      function renderSections() {
-        if (!state.data || !Array.isArray(state.data.sections)) {
-          return;
-        }
-
-        const query = normalizeText(state.query);
-
-        elements.sections
-          .querySelectorAll("[data-social-section]")
-          .forEach((section) => section.remove());
-
-        let visibleProfiles = 0;
-        let totalProfiles = 0;
-
-        state.data.sections.forEach((section) => {
-          if (!Array.isArray(section.items) || section.items.length === 0) {
-            return;
-          }
-
-          const visibleItems = section.items.filter((item) => {
-            const profile = state.data.profiles?.[item.profileId];
-
-            if (!profile) {
-              return false;
-            }
-
-            totalProfiles++;
-
-            if (!query) {
-              return true;
-            }
-
-            const searchableText = [
-              profile.title,
-              profile.description,
-              section.title,
-              section.description,
-              section.platform,
-              getPlatformName(section.platform),
-            ]
-              .filter(Boolean)
-              .join(" ");
-
-            return normalizeText(searchableText).includes(query);
-          });
-
-          if (visibleItems.length === 0) {
-            return;
-          }
-
-          visibleProfiles += visibleItems.length;
-
-          const sectionElement = document.createElement("section");
-
-          sectionElement.id = section.id || "";
-          sectionElement.dataset.socialSection = "true";
-
-          sectionElement.className =
-            "scroll-mt-20 border-t border-slate-200 py-12 dark:border-white/[0.07] sm:py-14";
-
-          sectionElement.innerHTML = `
-          <div class="mb-7 flex items-center justify-between gap-4">
-
-            <div class="flex min-w-0 items-center gap-4">
-
-              <div
-                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-lg text-white shadow-lg"
-                style="background-color: ${safeColor(section.color)}"
-                aria-hidden="true">
-                <i class="${escapeHtml(section.icon || "fa-solid fa-link")}"></i>
-              </div>
-
-              <div class="min-w-0">
-
-                <h2 class="truncate text-xl font-black text-slate-900 dark:text-white sm:text-2xl">
-                  ${escapeHtml(
-                    section.title || getPlatformName(section.platform),
-                  )}
-                </h2>
-
-                ${
-                  section.description
-                    ? `
-                      <p class="mt-1 text-xs text-slate-500 sm:text-sm">
-                        ${escapeHtml(section.description)}
-                      </p>
-                    `
-                    : ""
-                }
-
-              </div>
-
-            </div>
-
-            <span
-              class="shrink-0 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-500 dark:bg-white/[0.04] dark:text-slate-500">
-              ${visibleItems.length}
-            </span>
-
-          </div>
-
-          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            ${visibleItems
-              .map((item) => {
-                const profile = state.data.profiles?.[item.profileId];
-
-                return profile ? createCard(item, profile, section) : "";
-              })
-              .join("")}
-          </div>
-        `;
-
-          elements.sections.appendChild(sectionElement);
-        });
-
-        updateSearchStatus(visibleProfiles, totalProfiles);
-
-        updateActivePlatform();
-      }
-
-      function createCard(item, profile, section) {
-        const url = safeUrl(item.url);
-
-        if (!url) {
-          return "";
-        }
-
-        const title = profile.title || "حساب";
-        const description = profile.description || "";
-        const platform = getPlatformName(section.platform);
-
-        const image = safeImage(profile.image, title);
-
-        const color = safeColor(section.color);
-
-        const icon = escapeHtml(section.icon || "fa-solid fa-link");
-
-        return `
-        <a
-          href="${escapeHtml(url)}"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="فتح ${escapeHtml(title)} على ${escapeHtml(platform)}"
-          class="social-card group flex min-h-[235px] flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm outline-none hover:border-slate-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-blue-500/50 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/15 dark:hover:bg-white/[0.07]">
-
-          <div class="flex items-start justify-between gap-4">
-
-            <div class="flex min-w-0 items-center gap-4">
-
-              <img
-                src="${image}"
-                alt=""
-                width="56"
-                height="56"
-                loading="lazy"
-                decoding="async"
-                class="h-14 w-14 shrink-0 rounded-2xl bg-slate-100 object-cover ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-white/10"
-                onerror="this.onerror=null;this.src='${safeImage("", title)}'">
-
-              <div class="min-w-0">
-
-                <h3 class="truncate font-bold text-slate-900 dark:text-white">
-                  ${escapeHtml(title)}
-                </h3>
-
-                <p class="mt-1 text-xs text-slate-500">
-                  ${escapeHtml(platform)}
-                </p>
-
-              </div>
-
-            </div>
-
-            <span
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-sm text-slate-400 transition group-hover:bg-slate-200 group-hover:text-slate-900 dark:bg-white/[0.05] dark:text-slate-500 dark:group-hover:bg-white/10 dark:group-hover:text-white"
-              aria-hidden="true">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </span>
-
-          </div>
-
-          <p class="mt-5 line-clamp-3 flex-1 text-sm leading-7 text-slate-500 dark:text-slate-400">
-            ${escapeHtml(description)}
-          </p>
-
-          <div class="mt-5 flex items-center justify-between gap-3">
-
-            <span
-              class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-white transition group-hover:brightness-110"
-              style="background-color: ${color}">
-              <i class="${icon}" aria-hidden="true"></i>
-              <span>زيارة الحساب</span>
-            </span>
-
-            <span class="text-xs text-slate-400 dark:text-slate-600">
-              ${escapeHtml(platform)}
-            </span>
-
-          </div>
-
-        </a>
-      `;
-      }
-
-      function buildPlatformNavigation() {
-        if (!elements.platformLinks) {
-          return;
-        }
-
-        elements.platformLinks.innerHTML = "";
-
-        state.data.sections.forEach((section) => {
-          if (
-            !Array.isArray(section.items) ||
-            section.items.length === 0 ||
-            !section.id
-          ) {
-            return;
-          }
-
-          const link = document.createElement("a");
-
-          link.href = `#${encodeURIComponent(section.id)}`;
-
-          link.dataset.target = section.id;
-
-          link.className =
-            "platform-link inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-bold text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-400";
-
-          link.innerHTML = `
-          <i
-            class="${escapeHtml(section.icon || "fa-solid fa-link")}"
-            style="color: ${safeColor(section.color)}"
-            aria-hidden="true">
-          </i>
-
-          <span>
-            ${escapeHtml(section.title || getPlatformName(section.platform))}
-          </span>
-        `;
-
-          link.addEventListener("click", () => {
-            requestAnimationFrame(() => {
-              setTimeout(updateActivePlatform, 100);
-            });
-          });
-
-          elements.platformLinks.appendChild(link);
-        });
-
-        elements.platformNav.classList.remove("hidden");
-      }
-
-      function updateActivePlatform() {
-        if (!elements.platformLinks) {
-          return;
-        }
-
-        const sections = [
-          ...document.querySelectorAll("[data-social-section]"),
-        ];
-
-        const links = [
-          ...elements.platformLinks.querySelectorAll(".platform-link"),
-        ];
-
-        let current = "";
-
-        const offset = 140;
-
-        sections.forEach((section) => {
-          if (window.scrollY + offset >= section.offsetTop) {
-            current = section.id;
-          }
-        });
-
-        links.forEach((link) => {
-          const isActive = link.dataset.target === current;
-
-          link.classList.toggle("active", isActive);
-
-          if (isActive) {
-            link.setAttribute("aria-current", "location");
-          } else {
-            link.removeAttribute("aria-current");
-          }
-        });
-      }
-
-      function updateSearchStatus(visible, total) {
-        if (!elements.search) {
-          return;
-        }
-
-        const hasQuery = state.query.trim().length > 0;
-
-        elements.clearSearch.classList.toggle("hidden", !hasQuery);
-
-        elements.clearSearch.classList.toggle("flex", hasQuery);
-
-        if (hasQuery) {
-          elements.searchStatus.textContent =
-            visible === 0 ? "لا توجد نتائج" : `${visible} نتيجة`;
-        } else {
-          elements.searchStatus.textContent =
-            total > 0 ? `${total} حساب متاح` : "";
-        }
-
-        elements.noResults.classList.toggle("hidden", visible !== 0);
-      }
-
-      function resetSearch() {
-        state.query = "";
-
-        if (elements.search) {
-          elements.search.value = "";
-        }
-
-        renderSections();
-      }
-
-      function showEmptyState() {
-        elements.sections.innerHTML = `
-        <div class="py-14">
-          <div class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-
-            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-xl text-slate-400 dark:bg-white/[0.05] dark:text-slate-500">
-              <i class="fa-solid fa-link-slash"></i>
-            </div>
-
-            <h2 class="mt-5 font-black text-slate-900 dark:text-white">
-              لا توجد منصات متاحة حاليًا
-            </h2>
-
-            <p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400">
-              سيتم عرض المنصات هنا عند توفرها.
-            </p>
-
-          </div>
-        </div>
-      `;
-      }
-
-      function showErrorState() {
-        elements.platformNav?.classList.add("hidden");
-
-        elements.sections.innerHTML = `
-        <div class="py-14">
-          <div class="rounded-3xl border border-red-200 bg-red-50 p-10 text-center dark:border-red-500/20 dark:bg-red-500/[0.06]">
-
-            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 text-xl text-red-500 dark:bg-red-500/10 dark:text-red-400">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-
-            <h2 class="mt-5 font-black text-slate-900 dark:text-white">
-              حدث خطأ أثناء تحميل البيانات
-            </h2>
-
-            <p class="mx-auto mt-2 max-w-lg text-sm leading-7 text-slate-500 dark:text-slate-400">
-              تأكد من وجود ملف
-              <strong class="text-slate-700 dark:text-slate-300">
-                data.json
-              </strong>
-              بجانب ملف
-              <strong class="text-slate-700 dark:text-slate-300">
-                index.html
-              </strong>.
-            </p>
-
-            <button
-              type="button"
-              id="retry-load"
-              class="mt-6 rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-500/20 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
-
-              <i class="fa-solid fa-rotate-right me-2"></i>
-              إعادة المحاولة
-
-            </button>
-
-          </div>
-        </div>
-      `;
-
-        document
-          .getElementById("retry-load")
-          ?.addEventListener("click", loadSocialData);
-      }
-
-      function safeUrl(value) {
-        if (!value || typeof value !== "string") {
-          return "";
-        }
-
-        try {
-          const url = new URL(value, window.location.href);
-
-          if (!["http:", "https:"].includes(url.protocol)) {
-            return "";
-          }
-
-          return url.href;
-        } catch {
-          return "";
-        }
-      }
-
-      function safeColor(value) {
-        const color = String(value || "").trim();
-
-        if (
-          /^#[0-9a-fA-F]{3,8}$/.test(color) ||
-          /^rgb(a)?\([^)]*\)$/.test(color) ||
-          /^hsl(a)?\([^)]*\)$/.test(color)
-        ) {
-          return color;
-        }
-
-        return "#334155";
-      }
-
-      function safeImage(value, title) {
-        const image = safeUrl(value);
-
-        if (image) {
-          return escapeHtml(image);
-        }
-
-        const letter = String(title || "M").charAt(0);
-
-        const svg = `
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 100 100">
-
-          <rect
-            width="100"
-            height="100"
-            rx="20"
-            fill="#1e293b"/>
-
-          <text
-            x="50"
-            y="58"
-            text-anchor="middle"
-            font-size="42"
-            font-family="Arial"
-            fill="white">
-            ${escapeXml(letter)}
-          </text>
-
-        </svg>
-      `;
-
-        return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-      }
-
-      function escapeXml(value) {
-        return String(value)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&apos;");
-      }
-
-      function escapeHtml(value) {
-        if (value === null || value === undefined) {
-          return "";
-        }
-
-        return String(value)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-
-      function normalizeText(value) {
-        return String(value || "")
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[إأآا]/g, "ا")
-          .replace(/ى/g, "ي")
-          .replace(/ة/g, "ه")
-          .replace(/\s+/g, " ")
-          .trim();
-      }
-
-      function getInitialTheme() {
-        const saved = localStorage.getItem("theme");
-
-        if (saved === "light" || saved === "dark") {
-          return saved;
-        }
-
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      }
-
-      function applyTheme(theme) {
-        const isDark = theme === "dark";
-
-        document.documentElement.classList.toggle("dark", isDark);
-
-        elements.themeIcon.className = isDark
-          ? "fa-solid fa-sun"
-          : "fa-solid fa-moon";
-
-        const label = isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن";
-
-        elements.themeToggle?.setAttribute("aria-label", label);
-        elements.themeToggle?.setAttribute("title", label);
-
-        document
-          .querySelector('meta[name="theme-color"]')
-          ?.setAttribute("content", isDark ? "#020617" : "#f8fafc");
-      }
-
-      elements.search?.addEventListener("input", (event) => {
-        state.query = event.target.value;
-
-        renderSections();
+      themeToggle.addEventListener("click", () => {
+        root.classList.toggle("dark");
+
+        localStorage.setItem(
+          "theme",
+          root.classList.contains("dark") ? "dark" : "light",
+        );
+
+        updateThemeIcon();
       });
 
-      elements.clearSearch?.addEventListener("click", () => {
-        resetSearch();
-        elements.search?.focus();
-      });
-
-      elements.resetSearch?.addEventListener("click", () => {
-        resetSearch();
-        elements.search?.focus();
-      });
-
-      elements.search?.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && state.query) {
-          resetSearch();
-        }
-      });
-
-      window.addEventListener(
-        "scroll",
-        () => {
-          const showBackToTop = window.scrollY > 500;
-
-          elements.backToTop.classList.toggle("hidden", !showBackToTop);
-
-          elements.backToTop.classList.toggle("flex", showBackToTop);
-
-          updateActivePlatform();
-        },
-        { passive: true },
-      );
-
-      elements.backToTop?.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-
-      elements.themeToggle?.addEventListener("click", () => {
-        const isDark = document.documentElement.classList.contains("dark");
-
-        const nextTheme = isDark ? "light" : "dark";
-
-        localStorage.setItem("theme", nextTheme);
-        applyTheme(nextTheme);
-      });
-
-      applyTheme(getInitialTheme());
-      loadSocialData();
+      updateThemeIcon();
     </script>
   </body>
 </html>
